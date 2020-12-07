@@ -25,21 +25,21 @@ for i, project in enumerate(projects):
 
     data = stats_json_response.json()
 
-    column_to_write = number_of_rows + 1 + new_row_count
+    row_to_write = number_of_rows + 1 + new_row_count
     
     #write data to new row
-    datafile.at[column_to_write, 'id'] = data['project']['id']
-    datafile.at[column_to_write, 'link'] = project
-    datafile.at[column_to_write, 'state'] = data['project']['state']
-    datafile.at[column_to_write, 'backers_count'] = data['project']['backers_count']
-    datafile.at[column_to_write, 'comments_count'] = data['project']['comments_count']
-    datafile.at[column_to_write, 'comments_for_display_count'] = data['project']['comments_for_display_count']
-    datafile.at[column_to_write, 'pledged'] = data['project']['pledged']
-    datafile.at[column_to_write, 'datetime'] = datetime.now()
+    datafile.at[row_to_write, 'id'] = data['project']['id']
+    datafile.at[row_to_write, 'link'] = project
+    datafile.at[row_to_write, 'state'] = data['project']['state']
+    datafile.at[row_to_write, 'backers_count'] = data['project']['backers_count']
+    datafile.at[row_to_write, 'comments_count'] = data['project']['comments_count']
+    datafile.at[row_to_write, 'comments_for_display_count'] = data['project']['comments_for_display_count']
+    datafile.at[row_to_write, 'pledged'] = data['project']['pledged']
+    datafile.at[row_to_write, 'datetime'] = datetime.now()
 
     new_row_count += 1
-
+ 
 #write to csv
 datafile.to_csv('flow_data.csv', index=False)
 
-print('{} new rows added. Scraping finished'.format(new_row_count - number_of_rows))
+print('{} new rows added. Scraping finished'.format(row_to_write - number_of_rows))
